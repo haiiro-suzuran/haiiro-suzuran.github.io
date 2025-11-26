@@ -1,0 +1,25 @@
+/* --- BASE STYLES --- */
+body {
+    background-color: #ffffff; /* Start with white */
+    font-family: Arial, Helvetica, sans-serif; /* A clean base font */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- LAYOUT STYLES --- */
+main {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3 {
+    color: #333333;
+}
+p {
+    line-height: 1.6;
+    color: #555555;
+}
+
+/* Add any custom font or background color here */
