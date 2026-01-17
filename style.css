@@ -1,4 +1,6 @@
-h1:{
-    font-size: 16;
-    font: "Alice";
+body{
+    background-image: url("/utils/Mad_Alice_of_Pratanallis.jpg");
+    background-attachment: fixed;
+    font-size: 32;
+    font-family: "Alice";
 }
