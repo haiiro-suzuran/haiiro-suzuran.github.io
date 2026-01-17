@@ -1,15 +1,14 @@
 body{
     background-image: url("/utils/Mad_Alice_of_Pratanallis.jpg");
     background-attachment: fixed;
-    background-repeat: false;
+    background-repeat: no-repeat; 
+    background-size: cover;
     background-position: center;
     font-size: 32;
     font-family: "Alice";
-    width: 500px;
     padding-left: 10px;
     padding-right: 10px;
     color: aliceblue;
-    background-color: black;
 }
 
 p{
@@ -20,7 +19,15 @@ blockquote{
     background-color: darkmagenta;
 }
 
-.centered-wrapper{
-    position: center;
-    text-align: left;
+
+.main_content{
+    width: 1000px;
+    max-width: 90%; 
+    margin: 0 auto;
+
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 40px; 
+    min-height: 100vh; 
+    
+    font-size: 16px; 
 }
