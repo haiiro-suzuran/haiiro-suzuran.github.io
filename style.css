@@ -5,4 +5,22 @@ body{
     background-position: center;
     font-size: 32;
     font-family: "Alice";
+    width: 500px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: aliceblue;
+    background-color: black;
+}
+
+p{
+    font-family: "Alice";
+}
+
+blockquote{
+    background-color: darkmagenta;
+}
+
+.centered-wrapper{
+    position: center;
+    text-align: left;
 }
