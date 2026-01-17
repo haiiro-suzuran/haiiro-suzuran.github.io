@@ -1,8 +1,8 @@
 body{
-    background-image: url("/utils/Mad_Alice_of_Pratanallis.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat; 
     background-size: cover;
+    background-color: black;
     background-position: center;
     font-size: 32;
     font-family: "Alice";
@@ -30,4 +30,59 @@ blockquote{
     min-height: 100vh; 
     
     font-size: 16px; 
+}
+
+.rpg-box {
+
+  display: flex;           /* Enables the box model logic */
+  flex-direction: row;     /* Horizontal split (Left | Right) */
+  
+  width: 1000px;            /* Fixed width like a game window */
+      max-width: 90%; 
+  height: 200px;           
+  border: 4px solid #4a3b2a;
+  background-color: #2e261f;
+  color: white;
+  font-family: "Alice";  /* Retro game feel */
+}
+
+/* 2. The Text Section */
+.text-section {
+  flex: 3;                 /* Takes up 3 parts of space (75%) */
+  padding: 15px;
+  border-left: 2px;
+  font-size: 24px;
+}
+
+/* 3. The Character Section */
+.character-section {
+  flex: 1;                 /* Takes up 1 part of space (25%) */
+  
+  display: flex;           /* Becomes a parent for the inner boxes */
+  flex-direction: column;  /* Vertical split (Top / Bottom) */
+}
+
+/* 4. Inside Character: The Picture */
+.portrait {
+  flex: 1;                 /* Grow to fill available vertical space */
+  display: flex;           /* Just to center the image inside */
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #1a1510;
+}
+
+/* 5. Inside Character: The Name */
+.name-tag {
+  height: 30px;            /* Fixed height for the name */
+  display: flex;           /* To center the text */
+  justify-content: center;
+  align-items: center;
+  background-color: #4a3b2a;
+  font-weight: bold;
+}
+
+.portrait img {
+    width: 180px;
+  display: block;          /* Removes tiny bottom margin sometimes present */
 }
