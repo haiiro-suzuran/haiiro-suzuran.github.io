@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="32" viewBox="0 0 1080 32" fill="none" stroke="#a43cff" stroke-width="2">
+  <!-- left half -->
+  <g>
+    <path d="M0 16 H446 C460 16 466 6 478 6 C490 6 494 18 486 21 C479 24 473 17 479 14"/>
+    <path d="M446 16 C456 26 468 28 480 26 C492 24 500 22 506 16" stroke="#ff2e4d"/>
+  </g>
+  <!-- right half: the same shapes, mirrored -->
+  <g transform="translate(1080 0) scale(-1 1)">
+    <path d="M0 16 H446 C460 16 466 6 478 6 C490 6 494 18 486 21 C479 24 473 17 479 14"/>
+    <path d="M446 16 C456 26 468 28 480 26 C492 24 500 22 506 16" stroke="#ff2e4d"/>
+  </g>
+  <!-- eight-pointed star: two squares, one turned 45 degrees -->
+  <rect x="528" y="4" width="24" height="24"/>
+  <rect x="528" y="4" width="24" height="24" transform="rotate(45 540 16)"/>
+  <circle cx="540" cy="16" r="3" fill="#ff2e4d" stroke="none"/>
+</svg>

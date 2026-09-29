@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Stories - Suzuran</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="index.html"><span class="logo__arrow">&gt;</span> SUZURAN<span class="cursor">_</span></a>
+      <nav class="nav" aria-label="Main">
+        <!-- aria-current="page" is what turns the current link red -->
+        <a href="stories.html" aria-current="page">[ STORIES ]</a>
+        <a href="gallery.html">[ DRAWINGS ]</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="page-title">
+      <div class="prompt">C:\SUZURAN&gt; ls stories</div>
+      <h1>STORY INDEX</h1>
+      <p class="lead">// original stories and Rena Hatsune fanfics. check the warning at the top of each one.</p>
+    </div>
+
+    <!-- ===== Original stories ===== -->
+    <section class="section" aria-labelledby="original-title">
+      <h2 class="section__title section__title--sub" id="original-title"><span class="hash">##</span> ORIGINAL</h2>
+      <img class="divider" src="images/divider.svg" alt="">
+
+      <div class="entries">
+        <!-- To add a story: copy one <article class="entry"> block, change the number, title, blurb and link. -->
+        <article class="entry">
+          <div class="entry__num" aria-hidden="true">01</div>
+          <div class="entry__cover slot">[ cover ]</div>
+          <div class="entry__text">
+            <div class="tag">[ORIGINAL]</div>
+            <a class="entry__title" href="stories/Merveille_Dinah.html">Merveille &amp; Dinah</a>
+            <div class="entry__blurb">A drunkard father, a very practical four-year-old and a long trip to Cantellia.</div>
+          </div>
+          <a class="entry__read" href="stories/Merveille_Dinah.html">READ &gt;&gt;</a>
+        </article>
+
+        <article class="entry entry--red">
+          <div class="entry__num" aria-hidden="true">02</div>
+          <div class="entry__cover slot">[ cover ]</div>
+          <div class="entry__text">
+            <div class="tag">[ORIGINAL]</div>
+            <a class="entry__title" href="stories/the%20dolls%20of%20witch%20house.html">The Dolls of the Witch's House</a>
+            <div class="entry__blurb">A boy gathering red shards dreams of the dollhouse labyrinth.</div>
+          </div>
+          <a class="entry__read" href="stories/the%20dolls%20of%20witch%20house.html">READ &gt;&gt;</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Fanfic ===== -->
+    <section class="section" aria-labelledby="fanfic-title">
+      <h2 class="section__title section__title--sub" id="fanfic-title"><span class="hash">##</span> RENA HATSUNE FANFIC</h2>
+      <img class="divider" src="images/divider.svg" alt="">
+
+      <div class="entries">
+        <article class="entry">
+          <div class="entry__num" aria-hidden="true">03</div>
+          <div class="entry__cover slot">[ cover ]</div>
+          <div class="entry__text">
+            <div class="tag tag--fanfic">[FANFIC]</div>
+            <a class="entry__title" href="stories/Rena_Hatsune1.html">Many First's in a Single Day</a>
+            <div class="entry__blurb">The happiest day of Rena's life. Also the last one.</div>
+          </div>
+          <a class="entry__read" href="stories/Rena_Hatsune1.html">READ &gt;&gt;</a>
+        </article>
+
+        <article class="entry entry--red">
+          <div class="entry__num" aria-hidden="true">04</div>
+          <div class="entry__cover slot">[ cover ]</div>
+          <div class="entry__text">
+            <div class="tag tag--fanfic">[FANFIC]</div>
+            <a class="entry__title" href="stories/Rena_Hatsune2.html">Good Girl Rena is Loved by Her Big-Sis Hatsune</a>
+            <div class="entry__blurb">Rena wakes up hugging a Hatsune-scented pillow. So where is Hatsune?</div>
+          </div>
+          <a class="entry__read" href="stories/Rena_Hatsune2.html">READ &gt;&gt;</a>
+        </article>
+
+        <article class="entry">
+          <div class="entry__num" aria-hidden="true">05</div>
+          <div class="entry__cover slot">[ cover ]</div>
+          <div class="entry__text">
+            <div class="tag tag--fanfic">[FANFIC]</div>
+            <a class="entry__title" href="stories/Rena_Hatsune3.html">The World of Rena</a>
+            <div class="entry__blurb">A week stuck in a strange house, with a very grumpy cactus for company.</div>
+          </div>
+          <a class="entry__read" href="stories/Rena_Hatsune3.html">READ &gt;&gt;</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="rabbit-area">
+        <button class="rabbit" id="rabbit" type="button" aria-label="Poke the rabbit"
+                data-lines="hrair!|which one will you read?|carrots?|thump thump"><span class="rabbit__art">(\(\
+( -.-)
+o_(")(")</span></button>
+        <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
+      </div>
+      <div class="fineprint">// a small private corner. please keep the link between us.</div>
+    </div>
+  </footer>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

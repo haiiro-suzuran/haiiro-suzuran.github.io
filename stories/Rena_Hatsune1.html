@@ -1,63 +1,133 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
-    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
-    <meta charset="utf-8">
-    <title>ruru_tsugu</title>
-    <link rel="stylesheet", href="../style.css">
-  </head>
-
-
-<header class="rpg-box">
-    <div class="character-section">
-        
-        <div class="portrait">
-            <img src="../utils/AngoraRabbit.jpg">
-        </div>
-        
-        <div class="name-tag">
-            <span>Suzuran</span>
-        </div>
-        
-    </div>
-    
-    <div class="text-section">
-      <p>You should be cautious about reading this story, it contains stuff like:
-        <ul>
-          <li>yandere</li>
-          <li>Yuri</li>
-          <li>murder</li>
-        </ul>
-        It is a pure love story
-      </p>
-
-        <a href="../index.html", style="font-weight: bold; color:plum" > Main Menu</a>
-    </div>
-</header>
-
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Many First's in a Single Day - Suzuran</title>
+  <!-- This file lives in the /stories folder, so every path starts with ../ (one folder up) -->
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
 <body>
-  <div class="main_content">
 
-    <h1>Many First's in a Single Day</h1>
-    <hr>
-    <p>This is the happiest day of my life. I have met the love of my love today. We started to cohabit the same day. And, we are sleeping in the same bed this day. So many great things happened in this day. But like every good thing, it has also reached to its end. We are sleeping in the bed, and after sharing the warmth of each other, we both are sleepy. (I mean this is normal, in any pure love story such as this one would have a similar day in it.)</p>
-    <p>The sweet smell of hers makes me feel safe. They say butterflies move in the stomach when you are in love. But I have the feeling of slight dizziness and warmth in my chest. I am madly in love with Hatsune for sure. I feel like this love is piercing through my heart to the point it hurts. It hurts... It hurts! Oh, it hurts, the pain's so bad. Why does it hurt so bad as this? Does love hurt this much?</p>
-    <p>After sobering up with the pain, I realize, the supposed to be sleeping Hatsune looking at me intently. Did I wake up her? Why is she looking me like that? She pushes me from my shoulders, then kicks me out of the bed. It hurts so much that I don't understand a thing. My vision, which was accustomed to dark, starts to get blurry and dim. What's that shiny thing on Hatsune's hand? It looks crimson....</p>
-    <p>"I guess the stab wasn't deep enough, ups my bad. You see, it is hard to put enough strength onto attacks without a proper foothold. Since you are not dying right away, I will explain the reason for why am I killing you. I wouldn't want you to die while you hate me. I want to preserve your love for me."</p>
-    <p>Hatsune talks about something, but the pain on my chest and back doesn't let me understand what is she talking about. She looks so cute when she cups her face with the shiny thing in her hand. (I also agree on the cute yandere girl part ngl, Hatsune is cute as long as you are not in any contact with her.)</p>
-    <p>"I mean I had to kill you, because you are so precious to me. I just want to freeze the 'you' at that moment, which you love me so much and deeply, you know what I mean? I want you dead now, so that there is no way your love will change or decrease, humans are emotionally weak and easy to sway. Also, you don't look like a very loyal person. I don't need a girl who might fall in love with someone else. You would get cozy with other girls if you had the chance, so I have to kill you while you love me and none else."</p>
-    <p>I guess, she is jealous of me? That's not too bad actually (This girl is beyond saving don't feel sad for her)</p>
-    <p>Hatsune moves closer, I don't have any shred of strength in my body. She gets on top of me. Her hand caresses my cheek, then goes down to my neck. I feel a suffocating feeling and aching in my throat. My vision is getting blurry, and thinking is hard. In that situation I vaguely hear something. With barely any air in my lungs I say:</p>
-    <p>"I love Hatsune."</p>
-    <p>And my vision goes dark, I fell asleep (The eternal kind).</p>
-    <blockquote>
-    <p>Well, it was also her first time of getting stabbed and strangled to death. So I guess that was many first times for Rena in a single day, to the point she died.</p>
-    <p>I have been planning to make the meeting of the girls orchestrated by Hatsune, as she was the stalker. And to let Hatsune force herself onto Rena to create a broken scene... But this Rena would probably be happy about being 'graped' so at this point my only resort left was to kill Rena.</p>
-    </blockquote>    
-        <div class="arabesque">
-            <img src="../utils/footer.png">
-        </div>
+  <!-- Reading progress bar (js/story.js fills it as you scroll) -->
+  <div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="../index.html"><span class="logo__arrow">&gt;</span> SUZURAN<span class="cursor">_</span></a>
+      <div class="progress-label" id="progressLabel" aria-hidden="true">[ 0% READ ]</div>
+      <nav class="nav" aria-label="Main">
+        <a href="../stories.html" aria-current="page">[ STORIES ]</a>
+        <a href="../gallery.html">[ DRAWINGS ]</a>
+      </nav>
     </div>
+  </header>
+
+  <main class="wrap">
+
+    <a class="back-link" href="../stories.html">&lt;&lt; back to index</a>
+
+    <!-- "Resume" banner: hidden until js/story.js finds a saved place -->
+    <div class="resume" id="resume" hidden>
+      <span><span class="hl-red">&gt;</span> last time you stopped at: <span class="hl-purple" id="resumeName"></span></span>
+      <span class="resume__buttons">
+        <button class="btn btn--purple" id="resumeGo" type="button">[ RESUME ]</button>
+        <button class="btn" id="resumeTop" type="button">[ FROM TOP ]</button>
+      </span>
+    </div>
+
+    <div class="reader">
+
+      <!-- Sticky list of sections. The links jump to the ids below. -->
+      <nav class="filetree" aria-label="Sections">
+        <div class="filetree__bar">files/</div>
+        <ul>
+          <li><a href="#warn">&gt; 00_warning</a></li>
+          <li><a href="#many-first-s-in-a-single-day">&gt; 01_story</a></li>
+        </ul>
+      </nav>
+
+      <article class="story window">
+        <div class="window__bar">
+          <span>many_firsts.txt</span>
+          <span class="window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+
+        <div class="window__body">
+
+          <!-- Content warning: <details> opens and closes with no JavaScript -->
+          <details class="warning" id="warn" data-section data-title="Content warning">
+            <summary>CONTENT WARNING</summary>
+            <div class="warning__body">
+              <div>You should be cautious about reading this story, it contains stuff like:</div>
+              <ul>
+                <li>yandere</li>
+                <li>Yuri</li>
+                <li>murder</li>
+              </ul>
+              <div class="muted">It is a pure love story</div>
+            </div>
+          </details>
+
+          <h1 id="many-first-s-in-a-single-day" data-section data-title="Many First&#x27;s in a Single Day">Many First's in a Single Day</h1>
+          <div class="meta">// ~670 words &middot; about 3 min read</div>
+          <img class="divider" src="../images/divider.svg" alt="">
+
+          <div class="prose">
+            <p>This is the happiest day of my life. I have met the love of my love today. We started to cohabit the same day. And, we are sleeping in the same bed this day. So many great things happened in this day. But like every good thing, it has also reached to its end. We are sleeping in the bed, and after sharing the warmth of each other, we both are sleepy. (I mean this is normal, in any pure love story such as this one would have a similar day in it.)</p>
+            <p>The sweet smell of hers makes me feel safe. They say butterflies move in the stomach when you are in love. But I have the feeling of slight dizziness and warmth in my chest. I am madly in love with Hatsune for sure. I feel like this love is piercing through my heart to the point it hurts. It hurts... It hurts! Oh, it hurts, the pain's so bad. Why does it hurt so bad as this? Does love hurt this much?</p>
+            <p>After sobering up with the pain, I realize, the supposed to be sleeping Hatsune looking at me intently. Did I wake up her? Why is she looking me like that? She pushes me from my shoulders, then kicks me out of the bed. It hurts so much that I don't understand a thing. My vision, which was accustomed to dark, starts to get blurry and dim. What's that shiny thing on Hatsune's hand? It looks crimson....</p>
+            <p>"I guess the stab wasn't deep enough, ups my bad. You see, it is hard to put enough strength onto attacks without a proper foothold. Since you are not dying right away, I will explain the reason for why am I killing you. I wouldn't want you to die while you hate me. I want to preserve your love for me."</p>
+            <p>Hatsune talks about something, but the pain on my chest and back doesn't let me understand what is she talking about. She looks so cute when she cups her face with the shiny thing in her hand. (I also agree on the cute yandere girl part ngl, Hatsune is cute as long as you are not in any contact with her.)</p>
+            <p>"I mean I had to kill you, because you are so precious to me. I just want to freeze the 'you' at that moment, which you love me so much and deeply, you know what I mean? I want you dead now, so that there is no way your love will change or decrease, humans are emotionally weak and easy to sway. Also, you don't look like a very loyal person. I don't need a girl who might fall in love with someone else. You would get cozy with other girls if you had the chance, so I have to kill you while you love me and none else."</p>
+            <p>I guess, she is jealous of me? That's not too bad actually (This girl is beyond saving don't feel sad for her)</p>
+            <p>Hatsune moves closer, I don't have any shred of strength in my body. She gets on top of me. Her hand caresses my cheek, then goes down to my neck. I feel a suffocating feeling and aching in my throat. My vision is getting blurry, and thinking is hard. In that situation I vaguely hear something. With barely any air in my lungs I say:</p>
+            <p>"I love Hatsune."</p>
+            <p>And my vision goes dark, I fell asleep (The eternal kind).</p>
+            <blockquote>
+              <p>Well, it was also her first time of getting stabbed and strangled to death. So I guess that was many first times for Rena in a single day, to the point she died.</p>
+              <p>I have been planning to make the meeting of the girls orchestrated by Hatsune, as she was the stalker. And to let Hatsune force herself onto Rena to create a broken scene... But this Rena would probably be happy about being 'graped' so at this point my only resort left was to kill Rena.</p>
+            </blockquote>
+          </div>
+
+          <img class="end-mark" src="../images/end-mark.svg" alt="">
+
+          <div class="pager">
+            <a href="../stories.html">&lt;&lt; back to index</a>
+            <a href="Rena_Hatsune2.html">next story &gt;&gt;</a>
+          </div>
+        </div>
+
+        <img class="corner corner--tl" src="../images/corner.svg" alt="">
+        <img class="corner corner--tr" src="../images/corner.svg" alt="">
+        <img class="corner corner--bl" src="../images/corner.svg" alt="">
+        <img class="corner corner--br" src="../images/corner.svg" alt="">
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="rabbit-area">
+        <button class="rabbit" id="rabbit" type="button" aria-label="Poke the rabbit"
+                data-lines="shh, reading time|hrair...|keep going|thump thump"><span class="rabbit__art">(\(\
+( -.-)
+o_(")(")</span></button>
+        <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
+      </div>
+      <div class="fineprint">// a small private corner. please keep the link between us.</div>
+    </div>
+  </footer>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/story.js"></script>
 </body>
 </html>

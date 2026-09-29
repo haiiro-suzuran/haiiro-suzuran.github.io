@@ -1,0 +1,729 @@
+/* ==========================================================
+   SUZURAN SITE - style.css
+   One stylesheet for every page. Read it top to bottom:
+   1. Font          5. Sections and headings
+   2. Variables     6. Cards, entries, tiles
+   3. Base          7. Footer, rabbit, dialog
+   4. Layout parts  8. Story page
+                    9. Small screens
+   ========================================================== */
+
+
+/* ---------- 1. FONT ----------
+   Put the font file in /fonts and match the name below.
+   If the file is missing, the browser quietly uses the next
+   font in the --font list (VT323, then Courier New). */
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('../fonts/VCR_OSD_MONO.ttf') format('truetype');
+  font-display: swap;
+}
+
+
+/* ---------- 2. VARIABLES ----------
+   Change a color here and the whole site changes. */
+:root {
+  --bg: #0a0610;
+  --panel: #120a1c;
+  --panel-2: #1d1030;
+  --text: #f1e6ff;
+  --muted: #a898c4;
+  --purple: #a43cff;
+  --purple-soft: #c77dff;
+  --red: #ff2e4d;
+  --red-soft: #ff4d67;
+  --font: 'VCR OSD Mono', 'VT323', 'Courier New', monospace;
+}
+
+
+/* ---------- 3. BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html { font-size: 16px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/* Faint scanlines over the whole page. position: fixed keeps
+   them on screen while you scroll; pointer-events: none lets
+   clicks pass straight through. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.035) 0,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+a { color: var(--purple-soft); }
+a:hover { color: var(--red-soft); }
+
+/* Keyboard users need to see where they are. */
+:focus-visible {
+  outline: 2px solid var(--red-soft);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; }
+
+.hash { color: var(--red-soft); }
+.hl-red { color: var(--red-soft); }
+.hl-purple { color: var(--purple-soft); }
+.muted { color: var(--muted); }
+
+
+/* ---------- 4. LAYOUT PARTS ---------- */
+
+/* Centered column, never wider than 1080px, with side space
+   on small screens. */
+.wrap {
+  width: min(1080px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* The diamond lattice strip. The image is one small tile that
+   repeats sideways. */
+.band {
+  height: 28px;
+  background: url('../images/lattice.svg') repeat-x;
+}
+
+.site-header { border-bottom: 2px solid var(--purple); }
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  min-height: 84px;
+}
+
+.logo {
+  font-size: 2.75rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo__arrow { color: var(--red-soft); }
+
+.cursor {
+  color: var(--purple-soft);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.nav { display: flex; gap: 2rem; }
+.nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+.nav a[aria-current="page"] { color: var(--red-soft); }
+
+.status {
+  padding-top: 20px;
+  font-size: 1.4rem;
+  color: var(--muted);
+}
+
+/* The "program window": a bordered box with a title bar and a
+   hard offset shadow. Used for the intro box and story pages. */
+.window {
+  position: relative;
+  background: var(--panel);
+  border: 2px solid var(--purple);
+  box-shadow: 8px 8px 0 var(--red);
+}
+.window__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--purple);
+  color: var(--bg);
+  font-size: 1.5rem;
+}
+.window__dots { display: flex; gap: 8px; }
+.window__dots i { width: 14px; height: 14px; background: var(--bg); }
+.window__dots i:last-child { background: var(--red); }
+.window__body { padding: 2.75rem 3.5rem; }
+
+/* Ornate corners: four copies of one image, flipped with
+   transform. */
+.corner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+}
+.corner--tl { left: 10px; top: 50px; }
+.corner--tr { right: 10px; top: 50px; transform: scaleX(-1); }
+.corner--bl { left: 10px; bottom: 10px; transform: scaleY(-1); }
+.corner--br { right: 10px; bottom: 10px; transform: scale(-1, -1); }
+
+/* An empty picture spot. Later, put an <img> inside it and it
+   will fill the box. */
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 1.4rem;
+  text-align: center;
+}
+.slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Buttons */
+.btn {
+  min-height: 44px;
+  padding: 0 1rem;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 2px solid var(--purple);
+  font: inherit;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+.btn--red { background: var(--red); border-color: var(--red); color: var(--bg); }
+.btn--purple { background: var(--purple); border-color: var(--purple); color: var(--bg); }
+.btn--link {
+  background: none;
+  border: none;
+  color: var(--purple-soft);
+  font-size: 1.625rem;
+}
+.btn--link:hover { color: var(--red-soft); }
+
+
+/* ---------- Home: intro window ---------- */
+.hero { margin-top: 2rem; }
+
+.hero__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 2.75rem 3.5rem 2.25rem;
+}
+.hero__portrait { width: 240px; flex-shrink: 0; text-align: center; }
+.hero__photo { width: 240px; height: 240px; border: 2px solid var(--red); }
+.hero__name {
+  margin-top: 0.9rem;
+  font-size: 2.25rem;
+  letter-spacing: 0.1em;
+}
+.hero__text {
+  flex: 1;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fact { font-size: 1.55rem; line-height: 1.55; }
+.hero__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  color: var(--muted);
+}
+
+
+/* ---------- 5. SECTIONS AND HEADINGS ---------- */
+.section { margin-top: 4.5rem; }
+
+.section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.section__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: 3.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.section__title--sub { font-size: 3.25rem; }
+.section__link { font-size: 1.625rem; text-decoration: none; }
+
+.divider { display: block; width: 100%; height: auto; margin-top: 0.75rem; }
+
+.star-btn {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.star-btn img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  transition: transform 0.7s;
+}
+
+.page-title { margin-top: 3.5rem; }
+.prompt { font-size: 1.5rem; color: var(--muted); }
+.page-title h1 {
+  margin: 0.75rem 0 0;
+  font-size: 6rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+.lead { max-width: 44rem; margin-top: 1rem; font-size: 1.5rem; color: var(--muted); }
+
+
+/* ---------- 6. CARDS, ENTRIES, TILES ----------
+   Each of these sets a custom property called --edge on itself.
+   Borders, shadows and labels inside read it with var(--edge),
+   so switching a card to red is just one extra class. */
+
+/* Cards (home page story previews) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.25rem;
+  margin-top: 2rem;
+}
+.card {
+  --edge: var(--purple);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 2px solid var(--edge);
+  box-shadow: 6px 6px 0 var(--edge);
+}
+.card--red { --edge: var(--red); }
+.card__cover { height: 180px; border-bottom: 2px solid var(--edge); }
+.card__body { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; }
+.tag { font-size: 1.4rem; letter-spacing: 0.12em; color: var(--red-soft); }
+.tag--fanfic { color: var(--purple-soft); }
+.card__title {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--text);
+  text-decoration: none;
+}
+.card__title:hover { color: var(--red-soft); }
+.card__blurb { font-size: 1.4rem; line-height: 1.35; color: var(--muted); }
+.card__file { font-size: 1.25rem; color: var(--edge); text-align: right; }
+
+/* Entries (rows on the story index page) */
+.entries { display: flex; flex-direction: column; gap: 1.75rem; margin-top: 1.75rem; }
+.entry {
+  --edge: var(--purple);
+  display: flex;
+  min-height: 150px;
+  background: var(--panel);
+  border: 2px solid var(--edge);
+  box-shadow: 6px 6px 0 var(--edge);
+}
+.entry--red { --edge: var(--red); }
+.entry__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  flex-shrink: 0;
+  background: var(--edge);
+  color: var(--bg);
+  font-size: 3rem;
+}
+.entry__cover { width: 150px; flex-shrink: 0; border-right: 2px solid var(--edge); }
+.entry__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1.1rem 1.75rem;
+}
+.entry__title {
+  font-size: 2.75rem;
+  line-height: 1;
+  color: var(--text);
+  text-decoration: none;
+}
+.entry__title:hover { color: var(--red-soft); }
+.entry__blurb { font-size: 1.4rem; color: var(--muted); }
+.entry__read {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  flex-shrink: 0;
+  border-left: 2px dashed var(--edge);
+  font-size: 1.75rem;
+  text-decoration: none;
+}
+
+/* Tiles (drawings) */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+.tile {
+  --edge: var(--purple);
+  margin: 0; /* <figure> has a default margin, so we reset it */
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 2px solid var(--edge);
+}
+.tile--red { --edge: var(--red); }
+.tile__bar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 0.6rem;
+  background: var(--edge);
+  color: var(--bg);
+  font-size: 1.25rem;
+}
+.tile__art { flex: 1; min-height: 0; }
+.tiles .tile { height: 290px; }
+
+/* Gallery page: columns of different-height tiles. Real images
+   set their own height; --h only sizes the placeholders. */
+.gallery { column-count: 3; column-gap: 1.75rem; margin-top: 2.5rem; }
+.gallery .tile__art img { height: auto; }
+.gallery .tile {
+  height: var(--h, auto);
+  margin-bottom: 1.75rem;
+  break-inside: avoid;
+  box-shadow: 6px 6px 0 var(--edge);
+}
+
+
+/* ---------- 7. FOOTER, RABBIT, DIALOG ---------- */
+.site-footer { margin-top: 4rem; padding-block: 1.5rem 1.25rem; }
+.site-footer__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.fineprint { max-width: 26rem; font-size: 1.4rem; color: var(--muted); text-align: right; }
+
+.rabbit-area { display: flex; align-items: flex-end; gap: 1.25rem; }
+.rabbit {
+  min-height: 44px;
+  padding: 6px 10px;
+  background: none;
+  border: 2px solid transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.625rem;
+  line-height: 1.1;
+  text-align: left;
+  cursor: pointer;
+}
+.rabbit__art {
+  display: block;
+  white-space: pre;
+  transition: transform 0.15s;
+}
+.rabbit.is-hopping .rabbit__art { transform: translateY(-12px); }
+
+.speech {
+  margin-bottom: 1.25rem;
+  padding: 6px 14px;
+  background: #1a0a14;
+  border: 2px solid var(--red);
+  font-size: 1.5rem;
+}
+
+.horde { display: flex; align-items: flex-end; gap: 1.5rem; }
+.horde span {
+  display: block;
+  white-space: pre;
+  color: var(--purple-soft);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  transition: transform 0.15s;
+}
+.horde span.is-up { transform: translateY(-10px); }
+
+/* Cursor trail dots are created by js/main.js */
+.trail-dot {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: trail-fade 0.7s ease-out forwards;
+}
+@keyframes trail-fade {
+  from { opacity: 0.9; }
+  to { opacity: 0; }
+}
+
+/* The fake error window is a native <dialog> element. */
+dialog.window {
+  width: min(520px, calc(100% - 2rem));
+  padding: 0;
+  color: var(--text);
+}
+dialog::backdrop { background: rgba(10, 6, 16, 0.72); }
+.window--error { border-color: var(--red); box-shadow: 8px 8px 0 var(--purple); }
+.window--error .window__bar { background: var(--red); }
+.dialog__body { padding: 1.75rem; font-size: 1.625rem; line-height: 1.5; }
+.dialog__body p { margin: 0 0 0.6rem; }
+.err-line { color: var(--red-soft); }
+.dialog__buttons { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; }
+
+
+/* ---------- 8. STORY PAGE ---------- */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  height: 8px;
+  background: var(--panel-2);
+}
+.progress__fill { width: 0; height: 100%; background: var(--red); }
+.progress-label {
+  padding: 2px 14px;
+  border: 2px solid var(--red);
+  font-size: 1.4rem;
+  color: var(--red-soft);
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 24px;
+  font-size: 1.625rem;
+  text-decoration: none;
+}
+
+.resume {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 8px;
+  padding: 10px 18px;
+  background: var(--panel-2);
+  border: 2px dashed var(--purple);
+  font-size: 1.5rem;
+}
+.resume__buttons { display: flex; gap: 8px; }
+
+.reader { display: flex; align-items: flex-start; gap: 28px; margin-top: 20px; }
+
+.filetree {
+  position: sticky;
+  top: 24px;
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--panel);
+  border: 2px solid var(--purple);
+}
+.filetree__bar {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--purple);
+  color: var(--bg);
+  font-size: 1.4rem;
+}
+.filetree ul { margin: 0; padding: 10px 0; list-style: none; font-size: 1.4rem; }
+.filetree a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+.filetree a:hover { color: var(--red-soft); }
+.filetree a.is-current { background: var(--red); color: var(--bg); }
+
+.story { flex: 1; min-width: 0; max-width: 780px; }
+.story .window__body { padding: 3.5rem; }
+.story h1 {
+  margin: 2.5rem 0 0;
+  font-size: 3.75rem;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+}
+.story h2 {
+  margin: 2.25rem 0 0;
+  font-size: 2.9rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  scroll-margin-top: 24px;
+}
+.story h2.h2--small { font-size: 2.5rem; letter-spacing: 0.05em; }
+.meta { margin-top: 0.9rem; font-size: 1.4rem; color: var(--muted); }
+.story .divider { margin-top: 1.4rem; }
+.story .divider--space { margin-top: 2.5rem; }
+.prose--after-letter { margin-top: 2rem; }
+.prose--first { margin-top: 1.75rem; }
+
+/* Content warning: a <details> element opens and closes
+   without any JavaScript. */
+.warning { background: #1a0a14; border: 2px dashed var(--red); }
+.warning summary {
+  display: block;
+  min-height: 48px;
+  padding: 12px 20px;
+  color: var(--red-soft);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  list-style: none;
+}
+.warning summary::-webkit-details-marker { display: none; }
+.warning summary::before { content: "[ + ] "; }
+.warning summary::after { content: " (click to show)"; }
+.warning[open] summary::before { content: "[ - ] "; }
+.warning[open] summary::after { content: " (click to hide)"; }
+.warning__body { padding: 0 24px 20px; font-size: 1.5rem; line-height: 1.5; }
+.warning__body ul { margin: 0.5rem 0; padding: 0; list-style: none; }
+.warning__body li::before { content: "> "; color: var(--red-soft); }
+
+.refs { margin: 0.9rem 0 0; padding: 0; list-style: none; font-size: 1.55rem; line-height: 1.4; }
+.refs li { margin-bottom: 4px; }
+.refs li::before { content: "> "; color: var(--red-soft); }
+.rule { margin: 28px 0 0; border: 0; border-top: 2px dashed var(--purple); }
+
+.prose { display: flex; flex-direction: column; gap: 22px; font-size: 1.625rem; line-height: 1.55; }
+.prose p { margin: 0; }
+.prose .pause { color: var(--muted); }
+
+.letter {
+  margin-top: 1.75rem;
+  padding: 24px 26px;
+  background: var(--panel-2);
+  border: 2px dashed var(--purple);
+  font-size: 1.55rem;
+  line-height: 1.5;
+}
+.letter p { margin: 0 0 20px; }
+.letter p:last-child { margin-bottom: 0; }
+.letter .signature { text-align: right; color: var(--purple-soft); }
+
+/* Every block of story text after a heading, rule or divider. */
+.story .prose { margin-top: 1.75rem; }
+
+/* Side notes inside a story (author's comments, word meanings). */
+.prose blockquote {
+  margin: 0;
+  padding: 16px 22px;
+  background: var(--panel-2);
+  border-left: 4px solid var(--purple);
+  color: var(--muted);
+  font-size: 1.45rem;
+}
+.prose blockquote p { margin: 0 0 14px; }
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+.end-mark { display: block; margin: 2.75rem auto 0; }
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--purple);
+}
+.pager a { display: flex; align-items: center; min-height: 44px; text-decoration: none; }
+
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+  .star-btn img,
+  .rabbit__art,
+  .horde span { transition: none; }
+}
+
+
+/* ---------- 9. SMALL SCREENS ----------
+   These rules only apply when the window is narrower than the
+   number in brackets. Great for phones. */
+@media (max-width: 900px) {
+  .filetree { display: none; }
+  .cards { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery { column-count: 2; }
+  .hero__body { flex-direction: column; align-items: stretch; }
+  .hero__portrait { margin-inline: auto; }
+  .hero__text { min-height: 0; }
+  .progress-label { display: none; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 1.4rem; }
+  .logo { font-size: 2.25rem; }
+  .nav { gap: 1.25rem; }
+  .nav a { font-size: 1.5rem; }
+  .window__body,
+  .hero__body,
+  .story .window__body { padding: 1.5rem; }
+  .corner { display: none; }
+  .section__head { flex-wrap: wrap; }
+  .section__title,
+  .section__title--sub { font-size: 2.5rem; }
+  .window__bar { gap: 10px; }
+  .window__bar > span:first-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .page-title h1 { font-size: 3.5rem; }
+  .story h1 { font-size: 2.6rem; }
+  .story h2 { font-size: 2.1rem; }
+  .story h2.h2--small { font-size: 2rem; }
+  .prose { font-size: 1.5rem; }
+  .gallery { column-count: 1; }
+  .entry { flex-wrap: wrap; }
+  .entry__cover { display: none; }
+  .entry__num { width: 64px; font-size: 2.25rem; }
+  .entry__title { font-size: 2rem; }
+  .entry__read { width: 100%; min-height: 44px; border-left: 0; border-top: 2px dashed var(--edge); }
+  .fineprint { text-align: left; }
+}
