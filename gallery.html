@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Drawings - Suzuran</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="logo" href="index.html"><span class="logo__arrow">&gt;</span> SUZURAN<span class="cursor">_</span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="stories.html">[ STORIES ]</a>
+        <a href="gallery.html" aria-current="page">[ DRAWINGS ]</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="page-title">
+      <div class="prompt">C:\SUZURAN&gt; ls drawings</div>
+      <h1>DRAWINGS</h1>
+      <p class="lead">// nothing here yet. the drawings are still being drawn.</p>
+      <img class="divider" src="images/divider.svg" alt="">
+    </div>
+
+    <!--
+      To add a drawing: copy one <figure> block.
+      Replace the placeholder text with an image, for example:
+        <div class="tile__art"><img src="images/art_01.jpg" alt="what the drawing shows"></div>
+      Then delete the style="--h: ..." part, because a real image sets its own height.
+      Use class "tile tile--red" for a red frame, or just "tile" for purple.
+    -->
+    <div class="gallery">
+      <figure class="tile" style="--h: 360px">
+        <figcaption class="tile__bar">art_01.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile tile--red" style="--h: 280px">
+        <figcaption class="tile__bar">art_02.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile" style="--h: 340px">
+        <figcaption class="tile__bar">art_03.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile tile--red" style="--h: 300px">
+        <figcaption class="tile__bar">art_04.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile" style="--h: 380px">
+        <figcaption class="tile__bar">art_05.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile tile--red" style="--h: 320px">
+        <figcaption class="tile__bar">art_06.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile" style="--h: 320px">
+        <figcaption class="tile__bar">art_07.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile tile--red" style="--h: 300px">
+        <figcaption class="tile__bar">art_08.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+      <figure class="tile" style="--h: 330px">
+        <figcaption class="tile__bar">art_09.png</figcaption>
+        <div class="tile__art slot">[ drawing ]</div>
+      </figure>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="rabbit-area">
+        <button class="rabbit" id="rabbit" type="button" aria-label="Poke the rabbit"
+                data-lines="hrair!|nice drawings|carrots?|thump thump"><span class="rabbit__art">(\(\
+( -.-)
+o_(")(")</span></button>
+        <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
+      </div>
+      <div class="fineprint">// a small private corner. please keep the link between us.</div>
+    </div>
+  </footer>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
