@@ -60,12 +60,12 @@
 048.jpg   |              |
 049.jpg   |              |
 050.jpg   |              |
-051.jpg   |              |
-052.jpg   |              |
+051.jpg   |     nsfw     |
+052.jpg   |     nsfw     |
 053.jpg   |              |
-054.jpg   |              |
+054.jpg   |     nsfw     |
 055.jpg   |              |
-056.jpg   |              |
+056.jpg   |     nsfw     |
 057.jpg   |              |
 058.jpg   |              |
 059.jpg   |              |
@@ -94,13 +94,13 @@
 082-0.png |              |
 082-2.png |              |
 082.jpg   |              |
-083.jpg   |              |
+083.jpg   |     nsfw     |
 084.jpg   |              |
 085.jpg   |              |
 086.jpg   |              |
 087.jpg   |              |
 088.jpg   |              |
-089.jpg   |              |
+089.jpg   |     nsfw     |
 090.jpg   |              |
 091.jpg   |              |
 092.jpg   |              |
