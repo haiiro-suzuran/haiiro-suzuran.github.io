@@ -416,16 +416,112 @@ img { max-width: 100%; }
 .tile__art { flex: 1; min-height: 0; }
 .tiles .tile { height: 290px; }
 
-/* Gallery page: columns of different-height tiles. Real images
-   set their own height; --h only sizes the placeholders. */
-.gallery { column-count: 3; column-gap: 1.75rem; margin-top: 2.5rem; }
-.gallery .tile__art img { height: auto; }
-.gallery .tile {
-  height: var(--h, auto);
-  margin-bottom: 1.75rem;
-  break-inside: avoid;
-  box-shadow: 6px 6px 0 var(--edge);
+/* Gallery page. js/gallery.js makes the columns (.gallery__col)
+   and puts each picture in the shortest one. */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 1.75rem; }
+.filter {
+  min-height: 44px;
+  padding: 0 0.25rem;
+  background: none;
+  border: 0;
+  color: var(--purple-soft);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
+.filter:hover { color: var(--red-soft); }
+.filter[aria-pressed="true"] { color: var(--red-soft); }
+.filter--blur { margin-left: auto; color: var(--muted); }
+
+.gallery { display: flex; align-items: flex-start; gap: 1.75rem; margin-top: 1.5rem; }
+.gallery__col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1.75rem; }
+.gallery .tile { box-shadow: 6px 6px 0 var(--edge); }
+.tile__bar { justify-content: space-between; gap: 0.5rem; overflow: hidden; white-space: nowrap; }
+.tile__name { overflow: hidden; text-overflow: ellipsis; }
+.tile__tags { flex-shrink: 0; opacity: 0.75; }
+
+/* The picture is a button, so it can be clicked and reached with Tab. */
+.tile__open {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: var(--panel-2);
+  border: 0;
+  font: inherit;
+  cursor: zoom-in;
+}
+.tile__open img { display: block; width: 100%; height: auto; }
+
+/* NSFW pictures: blurred, with a label on top until clicked. */
+.tile.is-hidden .tile__open { cursor: pointer; }
+.tile.is-hidden .tile__open img,
+.viewer.is-hidden #viewerImg { filter: blur(24px) saturate(0.6); transform: scale(1.1); }
+.tile__cover,
+.viewer__cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: pre;
+  text-align: center;
+  background: rgba(10, 6, 16, 0.45);
+  color: var(--red-soft);
+  font: inherit;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+}
+
+/* The big viewer */
+dialog.window.viewer {
+  width: min(1100px, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  color: var(--text);
+}
+.viewer[open] { display: flex; flex-direction: column; }
+.viewer__title { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.viewer__close {
+  min-height: 40px;
+  padding: 0 0.25rem;
+  background: none;
+  border: 0;
+  color: var(--bg);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.viewer__stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+#viewerImg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 12rem);
+}
+.viewer__controls .btn { white-space: nowrap; }
+@media (max-width: 560px) {
+  .viewer__controls { gap: 0.5rem; padding: 0.75rem 0.5rem; }
+  .viewer__controls .btn { flex: 1; min-width: 0; padding: 0 0.25rem; font-size: 1.1rem; }
+}
+.viewer__cover { border: 0; cursor: pointer; }
+.viewer__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+.viewer__original { font-size: 1.4rem; text-decoration: none; }
 
 
 /* ---------- 7. FOOTER, RABBIT, DIALOG ---------- */
@@ -526,6 +622,7 @@ img { max-width: 100%; }
 
 /* The fake error window is a native <dialog> element. */
 dialog.window {
+  position: fixed; /* .window sets relative, which would stop the browser centering it */
   width: min(520px, calc(100% - 2rem));
   padding: 0;
   color: var(--text);
@@ -721,7 +818,6 @@ dialog::backdrop { background: rgba(10, 6, 16, 0.72); }
   .filetree { display: none; }
   .cards { grid-template-columns: 1fr; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .gallery { column-count: 2; }
   .hero__body { flex-direction: column; align-items: stretch; }
   .hero__portrait { margin-inline: auto; }
   .hero__text { min-height: 0; }
@@ -747,7 +843,7 @@ dialog::backdrop { background: rgba(10, 6, 16, 0.72); }
   .story h2 { font-size: 2.1rem; }
   .story h2.h2--small { font-size: 2rem; }
   .prose { font-size: 1.5rem; }
-  .gallery { column-count: 1; }
+  .viewer__original { display: none; }
   .entry { flex-wrap: wrap; }
   .entry__cover { display: none; }
   .entry__num { width: 64px; font-size: 2.25rem; }

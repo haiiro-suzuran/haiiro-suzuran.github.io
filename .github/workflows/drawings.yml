@@ -1,0 +1,62 @@
+# Runs tools/update_drawings.py every time something in drawings/ changes
+# on the main branch (new pictures, or edits to drawings/info.txt), then
+# saves the results back to the repository. You can also start it by hand
+# from the "Actions" tab: pick "Update drawings" and press "Run workflow".
+name: Update drawings
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'drawings/**'
+      - 'tools/update_drawings.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+# If two uploads happen close together, finish one run before the next.
+concurrency:
+  group: drawings
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: pip install pillow
+
+      - name: Make previews and the drawings list
+        run: python3 tools/update_drawings.py
+
+      - name: Save the results
+        id: save
+        run: |
+          git add drawings
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update drawings previews and list"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "pushed=yes" >> "$GITHUB_OUTPUT"
+
+      # A push made by this robot may not rebuild the website on its own,
+      # so ask GitHub Pages for a rebuild.
+      - name: Rebuild the website
+        if: steps.save.outputs.pushed == 'yes'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

@@ -7,7 +7,7 @@
   <title>Drawings - Suzuran</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -26,59 +26,39 @@
   <main class="wrap">
 
     <div class="page-title">
-      <div class="prompt">C:\SUZURAN&gt; ls drawings</div>
+      <div class="prompt">suzuran@burrow:~$ ls drawings</div>
       <h1>DRAWINGS</h1>
-      <p class="lead">// nothing here yet. the drawings are still being drawn.</p>
+      <p class="lead">// <span id="count">...</span> drawings. click one to see it big.</p>
       <img class="divider" src="images/divider.svg" alt="">
     </div>
 
     <!--
-      To add a drawing: copy one <figure> block.
-      Replace the placeholder text with an image, for example:
-        <div class="tile__art"><img src="images/art_01.jpg" alt="what the drawing shows"></div>
-      Then delete the style="--h: ..." part, because a real image sets its own height.
-      Use class "tile tile--red" for a red frame, or just "tile" for purple.
+      Everything below is built by js/gallery.js from drawings/drawings.json.
+      To add pictures, upload them to the drawings/ folder on GitHub.
+      To tag or describe them, edit drawings/info.txt. See README.md.
     -->
-    <div class="gallery">
-      <figure class="tile" style="--h: 360px">
-        <figcaption class="tile__bar">art_01.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile tile--red" style="--h: 280px">
-        <figcaption class="tile__bar">art_02.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile" style="--h: 340px">
-        <figcaption class="tile__bar">art_03.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile tile--red" style="--h: 300px">
-        <figcaption class="tile__bar">art_04.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile" style="--h: 380px">
-        <figcaption class="tile__bar">art_05.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile tile--red" style="--h: 320px">
-        <figcaption class="tile__bar">art_06.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile" style="--h: 320px">
-        <figcaption class="tile__bar">art_07.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile tile--red" style="--h: 300px">
-        <figcaption class="tile__bar">art_08.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-      <figure class="tile" style="--h: 330px">
-        <figcaption class="tile__bar">art_09.png</figcaption>
-        <div class="tile__art slot">[ drawing ]</div>
-      </figure>
-    </div>
+    <div class="filters" id="filters" aria-label="Filter by tag"></div>
+    <div class="gallery" id="gallery"></div>
+    <noscript><p class="muted">// the gallery needs JavaScript turned on.</p></noscript>
 
   </main>
+
+  <!-- The big viewer. js/gallery.js fills it in and opens it. -->
+  <dialog class="window viewer" id="viewer" aria-labelledby="viewerTitle">
+    <div class="window__bar">
+      <span class="viewer__title"><span id="viewerTitle"></span> &mdash; <span id="viewerCount"></span></span>
+      <button class="viewer__close" id="viewerClose" type="button" aria-label="Close">[ X ]</button>
+    </div>
+    <div class="viewer__stage">
+      <img id="viewerImg" alt="">
+      <button class="viewer__cover" id="viewerCover" type="button" hidden>[ NSFW ]<br>click to show</button>
+    </div>
+    <div class="viewer__controls">
+      <button class="btn" id="viewerPrev" type="button">[ &lt;&lt; PREV ]</button>
+      <a class="viewer__original" id="viewerOriginal" href="#" target="_blank" rel="noopener">[ original file ]</a>
+      <button class="btn" id="viewerNext" type="button">[ NEXT &gt;&gt; ]</button>
+    </div>
+  </dialog>
 
   <footer class="site-footer">
     <div class="wrap site-footer__inner">
@@ -96,6 +76,7 @@ o_(")(")</span></button>
 
   <div class="band" aria-hidden="true"></div>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
+  <script src="js/gallery.js?v=4"></script>
 </body>
 </html>

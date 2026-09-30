@@ -30,12 +30,20 @@ haiiro-suzuran.github.io/
 ├── css/
 │   └── style.css         ALL the styling. Colors live at the top (:root).
 ├── js/
-│   ├── main.js           Every page: cursor trail, star spin, rabbit, error window
+│   ├── main.js           Every page: footer status line, cursor trail, star spin, exploding rabbit, error window
 │   ├── home.js           Home only: rotating facts
-│   └── story.js          Story pages: progress bar, section list, resume prompt
-├── images/               The ornaments (SVG), rabbit.jpg, and later your covers and drawings
+│   ├── story.js          Story pages: progress bar, section list, resume prompt
+│   └── gallery.js        Drawings page: builds the gallery from drawings.json
+├── drawings/             Your drawings. Upload pictures here.
+│   ├── info.txt          Tags and descriptions (you edit this)
+│   ├── drawings.json     The list the gallery reads (made by the robot)
+│   └── thumbs/, large/   Smaller copies (made by the robot)
+├── images/               The ornaments (SVG) and rabbit.jpg
 ├── utils/                Old pictures from the first version of the site (not used any more)
 ├── fonts/                VCR_OSD_MONO.ttf, the site font
+├── tools/
+│   └── update_drawings.py   What the robot runs (makes previews and the list)
+├── .github/workflows/drawings.yml   The robot itself
 └── robots.txt            Asks search engines to stay away
 ```
 
@@ -43,7 +51,7 @@ haiiro-suzuran.github.io/
 
 1. In `css/style.css`, change `--purple` at the top and save. Watch the site recolor.
 2. In `index.html`, change the text of one `.fact`.
-3. In `gallery.html`, change `--h: 360px` on one tile and see the column shift.
+3. In `drawings/info.txt`, give a picture a tag and watch a new filter button appear.
 4. In `css/style.css`, change `box-shadow: 6px 6px 0 var(--edge)` on `.entry` to `10px 10px 0`.
 5. In any page, change the rabbit's `data-lines` (lines are split by `|`). The last line is the one that makes it explode.
 
@@ -61,13 +69,39 @@ Break things on purpose. Ctrl+Z always brings them back.
 3. In `stories.html`, copy one `<article class="entry">` block and point its
    links at the new file.
 
-## How to add a drawing
+## How to add drawings
 
-1. Save the image in `images/`. Keep it under about 1 MB (export as JPG or WebP,
-   around 1200 pixels wide is plenty).
-2. In `gallery.html`, copy one `<figure class="tile">` block. Inside it, replace
-   `[ drawing ]` with `<img src="images/your-file.jpg" alt="describe the drawing">`
-   and remove the `style="--h: ..."` part.
+1. On GitHub, open the `drawings` folder, click **Add file > Upload files**
+   and drop the pictures in (up to 100 at a time). Any name works; numbers
+   like `102.png` keep them in order. JPG, PNG, WebP and GIF are fine.
+2. Click **Commit changes**. That's all.
+
+A robot (GitHub Action, `.github/workflows/drawings.yml`) then runs by itself.
+It makes the small previews, adds the new pictures to the list, and updates
+the site. It takes a minute or two. You can watch it in the **Actions** tab.
+
+## How to tag or describe a drawing
+
+Open `drawings/info.txt` on GitHub, click the pencil to edit, and fill in
+the line for that picture:
+
+```
+017.png | nsfw        | Rena with the music box
+018.jpg | oc sketch   |
+```
+
+- The middle part is the tags, separated by spaces. Every tag becomes a
+  filter button on the drawings page.
+- The tag `nsfw` blurs the picture until someone clicks it. There is also a
+  `[ BLUR: ON/OFF ]` switch on the page.
+- The last part is the description. It's shown instead of the file name.
+
+Commit, and the robot updates the page. **Remember:** the blur only hides
+a picture on the page. The files themselves are public, like everything
+in this repository.
+
+To remove a drawing, delete its file from `drawings/`. The robot cleans up
+its previews and its line.
 
 ## How to put a picture in a placeholder
 
@@ -89,9 +123,9 @@ image and it fills the box:
 
 ## Notes
 
-- Every page loads the CSS and JS with `?v=3` on the end (for example
-  `css/style.css?v=3`). Browsers keep old copies of these files for a while.
-  When you change a CSS or JS file, raise the number in every page (`?v=4`)
+- Every page loads the CSS and JS with `?v=4` on the end (for example
+  `css/style.css?v=4`). Browsers keep old copies of these files for a while.
+  When you change a CSS or JS file, raise the number in every page (`?v=5`)
   so visitors get the new version right away.
 
 - Files in the `stories/` folder use `../` in their paths (one folder up).
