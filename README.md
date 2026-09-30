@@ -18,7 +18,7 @@ The live site is whatever is on the main branch of this repository.
 
 ```
 haiiro-suzuran.github.io/
-├── index.html            Home page: intro window, story cards, drawings preview
+├── index.html            Home page: intro window, links to stories and drawings
 ├── stories.html          Story index (list of all stories)
 ├── gallery.html          Drawing gallery
 ├── stories/
@@ -44,7 +44,8 @@ haiiro-suzuran.github.io/
 1. In `css/style.css`, change `--purple` at the top and save. Watch the site recolor.
 2. In `index.html`, change the text of one `.fact`.
 3. In `gallery.html`, change `--h: 360px` on one tile and see the column shift.
-4. In `css/style.css`, change `box-shadow: 6px 6px 0 var(--edge)` on `.card` to `10px 10px 0`.
+4. In `css/style.css`, change `box-shadow: 6px 6px 0 var(--edge)` on `.entry` to `10px 10px 0`.
+5. In any page, change the rabbit's `data-lines` (lines are split by `|`). The last line is the one that makes it explode.
 
 Break things on purpose. Ctrl+Z always brings them back.
 
@@ -57,8 +58,8 @@ Break things on purpose. Ctrl+Z always brings them back.
    comment) is a `<blockquote>` inside the prose. A scene break is `<hr class="rule">`.
    If you add or remove a section, also edit the file list (`<nav class="filetree">`).
    Also update the `// ~... words` line under the title.
-3. In `stories.html` (and `index.html` if you want a card there), copy one
-   `<article class="entry">` block and point its links at the new file.
+3. In `stories.html`, copy one `<article class="entry">` block and point its
+   links at the new file.
 
 ## How to add a drawing
 

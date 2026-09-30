@@ -465,13 +465,46 @@ img { max-width: 100%; }
 }
 .rabbit.is-hopping .rabbit__art { transform: translateY(-12px); }
 
+/* The rabbit gets angry (red), then rages (shakes), then explodes. */
+.rabbit.is-angry { color: var(--red); }
+.rabbit.is-raging .rabbit__art { animation: shake 0.08s linear infinite; }
+@keyframes shake {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-3px, 2px); }
+  50%  { transform: translate(3px, -2px); }
+  75%  { transform: translate(-2px, -3px); }
+  100% { transform: translate(2px, 3px); }
+}
+
+/* Bits flying out of the explosion (made by js/main.js). */
+.boom-bit {
+  position: fixed;
+  z-index: 60;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  animation: boom-fly 0.8s ease-out forwards;
+}
+@keyframes boom-fly {
+  from { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+  to   { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(270deg); opacity: 0; }
+}
+
 .speech {
   margin-bottom: 1.25rem;
   padding: 6px 14px;
   background: #1a0a14;
   border: 2px solid var(--red);
+  color: var(--red-soft);
   font-size: 1.5rem;
+  letter-spacing: 0.08em;
 }
+.speech.is-violent {
+  background: var(--red);
+  color: var(--bg);
+  font-size: 2.25rem;
+}
+.speech.is-violent .hl-red { color: var(--bg); }
 
 .horde { display: flex; align-items: flex-end; gap: 1.5rem; }
 .horde span {
@@ -683,6 +716,7 @@ dialog::backdrop { background: rgba(10, 6, 16, 0.72); }
   .star-btn img,
   .rabbit__art,
   .horde span { transition: none; }
+  .rabbit.is-raging .rabbit__art { animation: none; }
 }
 
 

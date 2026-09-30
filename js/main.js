@@ -2,7 +2,7 @@
    main.js - loaded on every page.
    Four small features:
    1. Cursor trail   2. Spinning stars
-   3. ASCII rabbit   4. Fake error window (home page only)
+   3. ASCII rabbit (it explodes)   4. Fake error window (home page only)
    Each block checks that its elements exist first, so the same
    file works on pages that don't have them.
    ========================================================== */
@@ -60,8 +60,11 @@
 
 
   /* ---------- 3. ASCII RABBIT ----------
-     The rabbit alternates between two drawings, and says a line
-     from its data-lines attribute each time it is poked. */
+     Each poke makes the rabbit say the next line from its
+     data-lines attribute and get a little angrier. After the
+     last line it explodes. On the home page the error window
+     opens after the explosion; elsewhere the rabbit just
+     comes back after a moment. */
   var rabbit = document.getElementById('rabbit');
   if (!rabbit) { return; }
 
@@ -72,33 +75,108 @@
   var horde = document.getElementById('horde');
 
   // "\\" is how you write one backslash inside a JavaScript string.
-  var REST = '(\\(\\\n( -.-)\no_(")(")';
-  var HOP  = '(\\(\\\n( ^.^)\no_(")(")';
+  function sprite(face) { return '(\\(\\\n' + face + '\no_(")(")'; }
+  var REST = sprite('( -.-)');
+  var HOP  = sprite('( ^.^)');
+
+  // One face per poke: calm, surprised, annoyed, furious, VIOLENCE.
+  var FACES = ['( -.-)', '( o.o)', '( >.<)', '(#>.<)', '(#O_O)'];
+
+  // The explosion, one drawing after another.
+  var BOOM = [
+    '  \\|/\n--(*)--\n  /|\\',
+    '\\ . | . /\n. BOOM! .\n/ \' | \' \\',
+    ' .  \'  .\n\'  .  \' \n .  \'  .',
+    '\n  ~ ~\n'
+  ];
+
   var lines = (rabbit.getAttribute('data-lines') || 'hrair!').split('|');
+  var pokes = 0;
+  var exploding = false;
+  var hopping = false;
+
+  function draw() {
+    if (exploding) { return; }
+    if (pokes === 0) {
+      art.textContent = hopping ? HOP : REST;
+    } else {
+      art.textContent = sprite(FACES[Math.min(pokes, FACES.length - 1)]);
+    }
+    rabbit.classList.toggle('is-hopping', hopping && pokes === 0);
+  }
 
   if (!calm) {
-    var hopping = false;
     setInterval(function () {
       hopping = !hopping;
-      art.textContent = hopping ? HOP : REST;
-      rabbit.classList.toggle('is-hopping', hopping);
+      draw();
     }, 650);
   }
 
-  var pokes = 0;
   rabbit.addEventListener('click', function () {
+    if (exploding) { return; }
     pokes++;
-    speechText.textContent = lines[(pokes - 1) % lines.length];
-    speech.hidden = false;
 
-    // Five pokes on the home page opens the error window.
-    if (errorDialog && pokes >= 5 && typeof errorDialog.showModal === 'function') {
-      pokes = 0;
-      speech.hidden = true;
-      errorDialog.returnValue = '';
-      errorDialog.showModal();
-    }
+    var last = pokes >= lines.length;
+    speechText.textContent = lines[Math.min(pokes, lines.length) - 1];
+    speech.hidden = false;
+    speech.classList.toggle('is-violent', last);
+
+    // Angrier every poke: red from the third one, shaking on the last.
+    rabbit.classList.toggle('is-angry', pokes >= 3);
+    rabbit.classList.toggle('is-raging', last);
+    draw();
+
+    if (last) { setTimeout(explode, calm ? 300 : 900); }
   });
+
+  function explode() {
+    exploding = true;
+    rabbit.classList.remove('is-raging');
+    if (!calm) { scatter(); }
+
+    var frame = 0;
+    (function next() {
+      if (frame < BOOM.length) {
+        art.textContent = BOOM[frame++];
+        setTimeout(next, calm ? 250 : 160);
+        return;
+      }
+      art.textContent = '\n\n';
+      speech.hidden = true;
+      if (errorDialog && typeof errorDialog.showModal === 'function') {
+        errorDialog.returnValue = '';
+        errorDialog.showModal();   // respawn() runs when it closes
+      } else {
+        setTimeout(respawn, 2500);
+      }
+    })();
+  }
+
+  // Little red and purple bits flying away from the rabbit.
+  function scatter() {
+    var box = rabbit.getBoundingClientRect();
+    for (var n = 0; n < 16; n++) {
+      var bit = document.createElement('div');
+      var angle = Math.random() * Math.PI * 2;
+      var dist = 60 + Math.random() * 120;
+      bit.className = 'boom-bit';
+      bit.style.left = (box.left + box.width / 2) + 'px';
+      bit.style.top = (box.top + box.height / 2) + 'px';
+      bit.style.background = (n % 2) ? '#ff2e4d' : '#c77dff';
+      bit.style.setProperty('--dx', Math.round(Math.cos(angle) * dist) + 'px');
+      bit.style.setProperty('--dy', Math.round(Math.sin(angle) * dist) + 'px');
+      bit.addEventListener('animationend', function () { this.remove(); });
+      document.body.appendChild(bit);
+    }
+  }
+
+  function respawn() {
+    exploding = false;
+    pokes = 0;
+    speech.classList.remove('is-violent');
+    rabbit.classList.remove('is-angry', 'is-raging');
+    draw();
+  }
 
 
   /* ---------- 4. FAKE ERROR WINDOW ----------
@@ -107,6 +185,7 @@
      if the button was "more", let a row of rabbits hop by. */
   if (errorDialog && horde) {
     errorDialog.addEventListener('close', function () {
+      respawn();
       if (errorDialog.returnValue === 'more') { startHorde(); }
     });
   }
