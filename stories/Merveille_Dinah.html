@@ -8,7 +8,7 @@
   <!-- This file lives in the /stories folder, so every path starts with ../ (one folder up) -->
   <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=3">
 </head>
 <body>
 
@@ -274,13 +274,14 @@
 o_(")(")</span></button>
         <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
       </div>
-      <div class="fineprint">// a small private corner. please keep the link between us.</div>
+      <!-- The line below changes every few seconds (js/main.js) -->
+      <div class="fineprint">// <span id="status">digging burrow...</span></div>
     </div>
   </footer>
 
   <div class="band" aria-hidden="true"></div>
 
-  <script src="../js/main.js"></script>
-  <script src="../js/story.js"></script>
+  <script src="../js/main.js?v=3"></script>
+  <script src="../js/story.js?v=3"></script>
 </body>
 </html>

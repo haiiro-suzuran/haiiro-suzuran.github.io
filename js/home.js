@@ -1,7 +1,6 @@
 /* ==========================================================
    home.js - only the home page loads this.
-   1. Silly status line under the menu
-   2. Rotating "did you know?" facts in the intro window
+   Rotating "did you know?" facts in the intro window
    ========================================================== */
 (function () {
   'use strict';
@@ -10,29 +9,7 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-  /* ---------- 1. STATUS LINE ---------- */
-  var status = document.getElementById('status');
-  var messages = [
-    'digging burrow...',
-    'counting to hrair...',
-    'feeding the rabbits...',
-    'hiding from elil...',
-    'sharpening carrots...'
-  ];
-
-  if (status) {
-    var m = 0;
-    status.textContent = messages[0];
-    if (!calm) {
-      setInterval(function () {
-        m = (m + 1) % messages.length;
-        status.textContent = messages[m];
-      }, 2500);
-    }
-  }
-
-
-  /* ---------- 2. ROTATING FACTS ----------
+  /* ---------- ROTATING FACTS ----------
      The facts are written in the HTML (each one is a
      <div class="fact">). We just hide all but one. */
   var facts = document.querySelectorAll('.fact');

@@ -10,7 +10,7 @@
   <!-- VT323 is the backup font until you add VCR OSD Mono to /fonts.
        You can delete this <link> once the real font works. -->
   <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -28,8 +28,6 @@
   </header>
 
   <main class="wrap">
-
-    <div class="status">// <span id="status">a private archive of stories and drawings</span></div>
 
     <!-- ===== Intro window with rotating facts ===== -->
     <section class="hero window" aria-label="Introduction">
@@ -67,30 +65,6 @@
       <img class="corner corner--br" src="images/corner.svg" alt="">
     </section>
 
-    <!-- ===== Stories link ===== -->
-    <section class="section" aria-labelledby="stories-title">
-      <div class="section__head">
-        <h2 class="section__title" id="stories-title">
-          <span><span class="hash">##</span> STORIES</span>
-          <button class="star-btn" type="button" aria-label="Spin the star"><img src="images/star.svg" alt=""></button>
-        </h2>
-        <a class="section__link" href="stories.html">[ all files &gt;&gt; ]</a>
-      </div>
-      <img class="divider" src="images/divider.svg" alt="">
-    </section>
-
-    <!-- ===== Drawings link ===== -->
-    <section class="section" aria-labelledby="drawings-title">
-      <div class="section__head">
-        <h2 class="section__title" id="drawings-title">
-          <span><span class="hash">##</span> DRAWINGS</span>
-          <button class="star-btn" type="button" aria-label="Spin the star"><img src="images/star.svg" alt=""></button>
-        </h2>
-        <a class="section__link" href="gallery.html">[ full gallery &gt;&gt; ]</a>
-      </div>
-      <img class="divider" src="images/divider.svg" alt="">
-    </section>
-
   </main>
 
   <!-- ===== Footer with the rabbit ===== -->
@@ -104,7 +78,8 @@ o_(")(")</span></button>
         <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
         <div class="horde" id="horde" hidden></div>
       </div>
-      <div class="fineprint">// a small private corner. please keep the link between us.</div>
+      <!-- The line below changes every few seconds (js/main.js) -->
+      <div class="fineprint">// <span id="status">digging burrow...</span></div>
     </div>
   </footer>
 
@@ -123,7 +98,7 @@ o_(")(")</span></button>
     </form>
   </dialog>
 
-  <script src="js/main.js"></script>
-  <script src="js/home.js"></script>
+  <script src="js/main.js?v=3"></script>
+  <script src="js/home.js?v=3"></script>
 </body>
 </html>
