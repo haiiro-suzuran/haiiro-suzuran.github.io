@@ -34,7 +34,7 @@
     <!-- ===== Intro window with rotating facts ===== -->
     <section class="hero window" aria-label="Introduction">
       <div class="window__bar">
-        <span>did_you_know.exe &mdash; <span id="factNo">1/5</span></span>
+        <span>did_you_know.sh &mdash; <span id="factNo">1/5</span></span>
         <span class="window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
       </div>
 
@@ -67,7 +67,7 @@
       <img class="corner corner--br" src="images/corner.svg" alt="">
     </section>
 
-    <!-- ===== Stories preview ===== -->
+    <!-- ===== Stories link ===== -->
     <section class="section" aria-labelledby="stories-title">
       <div class="section__head">
         <h2 class="section__title" id="stories-title">
@@ -77,41 +77,9 @@
         <a class="section__link" href="stories.html">[ all files &gt;&gt; ]</a>
       </div>
       <img class="divider" src="images/divider.svg" alt="">
-
-      <div class="cards">
-        <article class="card">
-          <div class="card__cover slot">[ cover.png ]</div>
-          <div class="card__body">
-            <div class="tag">[ORIGINAL]</div>
-            <a class="card__title" href="stories/Merveille_Dinah.html">Merveille &amp; Dinah</a>
-            <div class="card__blurb">A drunkard father, a very practical four-year-old and a long trip to Cantellia.</div>
-            <div class="card__file">story_01.txt</div>
-          </div>
-        </article>
-
-        <article class="card card--red">
-          <div class="card__cover slot">[ cover.png ]</div>
-          <div class="card__body">
-            <div class="tag">[ORIGINAL]</div>
-            <a class="card__title" href="stories/the%20dolls%20of%20witch%20house.html">The Dolls of the Witch's House</a>
-            <div class="card__blurb">A boy gathering red shards dreams of the dollhouse labyrinth.</div>
-            <div class="card__file">story_02.txt</div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card__cover slot">[ cover.png ]</div>
-          <div class="card__body">
-            <div class="tag tag--fanfic">[FANFIC]</div>
-            <a class="card__title" href="stories/Rena_Hatsune1.html">Many First's in a Single Day</a>
-            <div class="card__blurb">The happiest day of Rena's life. Also the last one.</div>
-            <div class="card__file">story_03.txt</div>
-          </div>
-        </article>
-      </div>
     </section>
 
-    <!-- ===== Drawings preview ===== -->
+    <!-- ===== Drawings link ===== -->
     <section class="section" aria-labelledby="drawings-title">
       <div class="section__head">
         <h2 class="section__title" id="drawings-title">
@@ -121,25 +89,6 @@
         <a class="section__link" href="gallery.html">[ full gallery &gt;&gt; ]</a>
       </div>
       <img class="divider" src="images/divider.svg" alt="">
-
-      <div class="tiles">
-        <figure class="tile">
-          <figcaption class="tile__bar">art_01.png</figcaption>
-          <div class="tile__art slot">[ drawing ]</div>
-        </figure>
-        <figure class="tile tile--red">
-          <figcaption class="tile__bar">art_02.png</figcaption>
-          <div class="tile__art slot">[ drawing ]</div>
-        </figure>
-        <figure class="tile">
-          <figcaption class="tile__bar">art_03.png</figcaption>
-          <div class="tile__art slot">[ drawing ]</div>
-        </figure>
-        <figure class="tile tile--red">
-          <figcaption class="tile__bar">art_04.png</figcaption>
-          <div class="tile__art slot">[ drawing ]</div>
-        </figure>
-      </div>
     </section>
 
   </main>
@@ -149,7 +98,7 @@
     <div class="wrap site-footer__inner">
       <div class="rabbit-area">
         <button class="rabbit" id="rabbit" type="button" aria-label="Poke the rabbit"
-                data-lines="hrair!|run and run, hide and hide|carrots?|elil?! where?!|thump thump"><span class="rabbit__art">(\(\
+                data-lines="MANKIND IS DEAD.|BLOOD IS FUEL.|HELL IS FULL.|VIOLENCE!!!"><span class="rabbit__art">(\(\
 ( -.-)
 o_(")(")</span></button>
         <div class="speech" id="speech" hidden><span class="hl-red">&lt;</span> <span id="speechText"></span></div>
@@ -161,9 +110,9 @@ o_(")(")</span></button>
 
   <div class="band" aria-hidden="true"></div>
 
-  <!-- The fake error window (opens after five rabbit pokes). -->
+  <!-- The fake error window (opens when the rabbit explodes). -->
   <dialog class="window window--error" id="errorDialog" aria-labelledby="errorTitle">
-    <div class="window__bar"><span id="errorTitle">ERROR.exe</span></div>
+    <div class="window__bar"><span id="errorTitle">ERROR.sh</span></div>
     <form class="dialog__body" method="dialog">
       <p class="err-line">ERROR: too many rabbits.</p>
       <p>Rabbits counted: 5. Maximum supported by the rabbit brain: 4. Anything above that is hrair.</p>
