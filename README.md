@@ -18,7 +18,7 @@ The live site is whatever is on the main branch of this repository.
 
 ```
 haiiro-suzuran.github.io/
-├── index.html            Home page: intro window, links to stories and drawings
+├── index.html            Home page: intro window with the rotating facts
 ├── stories.html          Story index (list of all stories)
 ├── gallery.html          Drawing gallery
 ├── stories/
@@ -31,7 +31,7 @@ haiiro-suzuran.github.io/
 │   └── style.css         ALL the styling. Colors live at the top (:root).
 ├── js/
 │   ├── main.js           Every page: cursor trail, star spin, rabbit, error window
-│   ├── home.js           Home only: rotating facts + silly status line
+│   ├── home.js           Home only: rotating facts
 │   └── story.js          Story pages: progress bar, section list, resume prompt
 ├── images/               The ornaments (SVG), rabbit.jpg, and later your covers and drawings
 ├── utils/                Old pictures from the first version of the site (not used any more)
@@ -88,6 +88,11 @@ image and it fills the box:
 - So: this is a "hard to find, easy to share in person" site, not a private one.
 
 ## Notes
+
+- Every page loads the CSS and JS with `?v=3` on the end (for example
+  `css/style.css?v=3`). Browsers keep old copies of these files for a while.
+  When you change a CSS or JS file, raise the number in every page (`?v=4`)
+  so visitors get the new version right away.
 
 - Files in the `stories/` folder use `../` in their paths (one folder up).
 - The header and footer are repeated in every page, because a static site has

@@ -142,12 +142,6 @@ img { max-width: 100%; }
 }
 .nav a[aria-current="page"] { color: var(--red-soft); }
 
-.status {
-  padding-top: 20px;
-  font-size: 1.4rem;
-  color: var(--muted);
-}
-
 /* The "program window": a bordered box with a title bar and a
    hard offset shadow. Used for the intro box and story pages. */
 .window {

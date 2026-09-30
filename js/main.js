@@ -1,6 +1,7 @@
 /* ==========================================================
    main.js - loaded on every page.
-   Four small features:
+   Five small features:
+   0. Footer status line
    1. Cursor trail   2. Spinning stars
    3. ASCII rabbit (it explodes)   4. Fake error window (home page only)
    Each block checks that its elements exist first, so the same
@@ -12,6 +13,30 @@
   // Some people set their device to reduce motion. Respect that.
   var calm = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  /* ---------- 0. STATUS LINE ----------
+     The little changing line in the footer. Add or change
+     messages freely. */
+  var status = document.getElementById('status');
+  var messages = [
+    'digging burrow...',
+    'counting to hrair...',
+    'feeding the rabbits...',
+    'hiding from elil...',
+    'sharpening carrots...'
+  ];
+
+  if (status) {
+    var m = 0;
+    status.textContent = messages[0];
+    if (!calm) {
+      setInterval(function () {
+        m = (m + 1) % messages.length;
+        status.textContent = messages[m];
+      }, 2500);
+    }
+  }
 
 
   /* ---------- 1. CURSOR TRAIL ----------
